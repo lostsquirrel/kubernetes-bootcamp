@@ -14,12 +14,15 @@ VERSIONED_IMAGE=$(IMAGE):$(VERSION_TAG)
 login:
 	docker login registry.cn-hangzhou.aliyuncs.com
 
+prepare:
+	cp $(VERSION)/server.js .
 # Push to registry. 推送到远程仓库
 push:
 	docker push $(VERSIONED_IMAGE)
 
 pull:
 	docker pull $(VERSIONED_IMAGE)
+
 build:
 	docker build --no-cache -t $(VERSIONED_IMAGE) .
 
